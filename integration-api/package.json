@@ -1,0 +1,34 @@
+{
+  "name": "integration-api",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "tsx scripts/dev.ts",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "key:create": "tsx scripts/create-key.ts",
+    "reprocess": "tsx scripts/reprocess.ts",
+    "vercel-build": "tsx scripts/migrate.ts",
+    "test": "vitest run",
+    "test:mutation": "stryker run",
+    "check": "biome check && tsc"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "hono": "4.13.13",
+    "postgres": "3.4.9"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@hono/node-server": "2.1.5",
+    "@stryker-mutator/core": "10.0.0",
+    "@stryker-mutator/vitest-runner": "10.0.0",
+    "@types/node": "24.19.2",
+    "embedded-postgres": "17.10.0-beta.17",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "vitest": "5.0.5"
+  }
+}

@@ -1,0 +1,9 @@
+node_modules/
+.pgdata/
+.next/
+.vercel/
+.stryker-tmp/
+reports/
+*.tsbuildinfo
+next-env.d.ts
+.env*
