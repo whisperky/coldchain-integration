@@ -132,6 +132,8 @@ Schema: [`integration-api/migrations/001_init.sql`](integration-api/migrations/0
 
 Vercel, one project per app (Root Directory `integration-api` or `mock-tive-sender`), with Neon Postgres (free tier; it scales to zero when idle and wakes on the next request). `npm run vercel-build` applies the migrations. Environment: `DATABASE_URL` for the API, `API_BASE_URL` for the sender. Keys are created with `npm run key:create -- --name <name> --accounts 478,999`.
 
+Production check: all 20 sender scenarios pass against the live API, and sample 1 returns exactly the PAXAFE examples. Measured inside the sender's server (same region as the API): p50 60 ms, p95 778 ms over 31 requests.
+
 Measured on `GET /health` from one PC: 1.1 s when warm (most of it the TLS handshake from that PC), 2.0 s for the first request after 7 idle minutes. The first call after the very first deploy took 23.5 s, so expect a slow first request after a long idle period.
 
 ## Assumptions
