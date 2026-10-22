@@ -7,8 +7,8 @@ Two apps:
 
 | App | URL |
 |---|---|
-| Integration API | _added after deploy_ |
-| Mock Tive Sender | _added after deploy_ |
+| Integration API | https://coldchain-integration-api.vercel.app (`/health`, `POST /api/webhook/tive`) |
+| Mock Tive Sender | https://coldchain-mock-sender.vercel.app |
 
 The test API key is in the submission email. It may write Tive accounts 478 and 999.
 
@@ -131,6 +131,8 @@ Schema: [`integration-api/migrations/001_init.sql`](integration-api/migrations/0
 ## Deployment
 
 Vercel, one project per app (Root Directory `integration-api` or `mock-tive-sender`), with Neon Postgres (free tier; it scales to zero when idle and wakes on the next request). `npm run vercel-build` applies the migrations. Environment: `DATABASE_URL` for the API, `API_BASE_URL` for the sender. Keys are created with `npm run key:create -- --name <name> --accounts 478,999`.
+
+Measured on `GET /health` from one PC: 1.1 s when warm (most of it the TLS handshake from that PC), 2.0 s for the first request after 7 idle minutes. The first call after the very first deploy took 23.5 s, so expect a slow first request after a long idle period.
 
 ## Assumptions
 
